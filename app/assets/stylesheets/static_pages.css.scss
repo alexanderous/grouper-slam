@@ -1,0 +1,624 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+///////////////* General *////////////////
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	min-width: 960px;
+	width: 100%;
+	background-image: url('/assets/grid.png'); 
+
+}
+
+.container {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-width: 960px;
+	ul {
+	margin: 0;
+	padding: 0px;
+	}
+}
+a:link {
+	color: black;
+	text-decoration: none;
+}
+a:visited {
+	color: black;
+}
+a:hover {
+	color: #177382;
+	background-color: transparent;
+}
+
+
+
+
+//////////////* Footer *///////////////////
+
+.wrap {
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto -60px;
+}
+.push {
+  height: 100px;
+}
+.footer {
+  position: fixed;
+  background-image: url('/assets/grid.png'); 
+  border-top: 5px solid white;
+  height: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  ul {
+  list-style-type: none;
+  font-size:16px;
+  font-family: Century Gothic, sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: normal;
+  padding-top: 10px;
+  }
+  ul li { 
+  padding: 12px 12px;
+  display: inline-block;
+  }
+}
+.searchfooter {
+	text-align: left;
+	position:relative;
+	left: -50px;
+	width: 150px;
+	padding-bottom: 30px;
+	padding-right: 40px;
+}
+
+
+//////////////* Buttons *///////////////////
+
+.button {
+   border-top: 1px solid #eabb57;
+   background: #eabb57;
+   padding: 8.5px 17px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: 1px 1px 4px #999;
+   box-shadow: 1px 1px 4px #999;
+   color: #ffffff;
+   font-size: 20px;
+   font-family: Century Gothic, sans-serif;
+   text-decoration: none;
+   vertical-align: middle;
+}
+.button:hover {
+   border-top-color: #eac87e;
+   background: #eac87e;
+   color: #ffffff;
+}
+.button:active {
+   border-top-color: #eabb57;
+   background: #eabb57;
+}	
+.button:visited {
+	color: #ffffff;
+}
+.button:link {
+	color: #ffffff;
+}
+
+.button2 {
+   border-top: 1px solid #6d6e70;
+   background: #6d6e70;
+   padding: 8.5px 17px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: 1px 1px 4px #999;
+   box-shadow: 1px 1px 4px #999;
+   color: #ffffff;
+   font-size: 20px;
+   font-family: Century Gothic, sans-serif;
+   text-decoration: none;
+   vertical-align: middle;
+}
+.button2:hover {
+   border-top-color: #929497;
+   background: #929497;
+   color: #ffffff;
+}
+.button2:active {
+   border-top-color: #6d6e70;
+   background: #6d6e70;
+}
+.button2:visited {
+	color: #ffffff;
+}
+.button2:link {
+	color: #ffffff;
+}
+.button2a {
+   border-top: 1px solid #6d6e70;
+   background: #6d6e70;
+   padding: 8.5px 17px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: 1px 1px 4px #999;
+   box-shadow: 1px 1px 4px #999;
+   color: #ffffff;
+   font-size: 12px;
+   font-family: Century Gothic, sans-serif;
+   text-decoration: none;
+   vertical-align: middle;
+}
+.button2a:hover {
+   border-top-color: #929497;
+   background: #929497;
+   color: #ffffff;
+}
+.button2a:active {
+   border-top-color: #6d6e70;
+   background: #6d6e70;
+}
+.button2a:visited {
+	color: #ffffff;
+}
+.button2a:link {
+	color: #ffffff;
+}
+.button3 {
+   border-top: 1px solid #4ab2c1;
+   background: #4ab2c1;
+   padding: 8.5px 17px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: 1px 1px 4px #999;
+   box-shadow: 1px 1px 4px #999;
+   color: #ffffff;
+   font-size: 20px;
+   font-family: Century Gothic, sans-serif;
+   text-decoration: none;
+   vertical-align: middle;
+}
+.button3:hover {
+   border-top-color: #69b6c1;
+   background: #69b6c1;
+   color: #ffffff;
+}
+.button3:active {
+   border-top-color: #4ab2c1;
+   background: #4ab2c1;
+}
+.button3:visited {
+	color: #ffffff;
+}
+.button3:link {
+	color: #ffffff;
+}
+
+
+
+
+//////////////* All Static Pages *////////////////
+
+.top {
+	min-height: 100px;
+	margin: 0px;
+	p {
+	text-align: center;
+	margin-top: 0px;
+	font-family: Century Gothic, sans-serif;
+	font-size: 14px;
+	}
+}
+.main {
+	min-height: 225px;
+	margin: 0px;
+	background: white;
+	font-family: Century Gothic, sans-serif;
+	p, ul {
+		font-family: Georgia, serif;
+		font-size: 12px;	
+	}
+}
+.bottom {
+	height: 150px;
+	margin: 0px;
+	padding-bottom: 0px;
+	display: block;
+	text-align: center;
+	ul {
+  		list-style-type: none;
+  		font-size:16px;
+  		font-family: Century Gothic, sans-serif;
+  		margin: 0 auto;
+  		text-align: center;
+  		padding-top: 15px;
+  		font-weight: normal;
+	}
+	ul li { 
+  		padding: 12px 12px;
+  		display: inline-block;
+	}
+}
+#anthologo2 {
+	padding-top: 25px;
+}
+
+///////////////////* Home */////////////////
+
+.home p {
+  font-family: Georgia, serif; 
+  padding: 0px 10px 0px 10px;
+  font-size: 12px;
+  line-height: 16px;
+}
+#landing {
+	text-align: center;
+	margin: 0 auto;
+}
+#anthologo1 {
+	margin-top: -40px;
+	margin-bottom: -50px;
+}
+#landingtext {
+	display: inline-block;
+	vertical-align: top;
+	padding-left: 40px;
+	h2 {
+	color: #404041;
+	font-weight: normal;
+	font-size: 30px;
+	margin: 0 auto;
+	padding: 40px 0px 0px 0px;	
+	}	
+	p {
+	color: #404041;
+	font-family: Century Gothic, sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	line-height: 30px;
+	}	
+}
+#landing ul {
+	padding-top: 140px;
+}
+#iconbanner {
+	padding: 100px 0px 50px 0px;
+}
+.icons_box {
+	width: 960px;
+	margin: 0 auto;
+	h2 {
+	font-size: 25px;
+	font-weight: normal;
+	padding-top: 100px;
+	padding-bottom: 30px;
+	}
+}
+.icons {
+	width: 320px;
+	float: left;
+}
+.clear {
+	clear: both;
+}
+
+.startbutton {
+	padding-left: 50px;
+	text-align: left;
+
+}
+
+.startbutton2 {
+	text-align: center;
+}
+
+.startbutton3 {
+	padding-top: 10px;
+	padding-left: 0px;
+	text-align: center;
+}
+
+.startbutton4 {
+	padding-top: 0px;
+	padding-left: 0px;
+	text-align: center;
+}
+.evangelist {
+	h2 {text-align: center;
+	}
+}
+
+
+
+
+////////////////////* About *///////////////////
+
+#about h1 {
+	font-weight: normal;
+}
+#about p {
+	font-family: Georgia, serif; 
+	padding: 0px 30px 10px 30px;
+}
+.aboutantho {
+	width: 600px;
+	margin: 0 auto;
+	background: white;
+	border: 2px solid #d1d2d4;
+	h2 {
+	color: #4ab2c1;
+	}
+}
+.teamantho {
+	width: 608px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	h2 {
+	padding-top: 50px;
+	padding-bottom: 20px;
+	}
+	h3 {
+	color: #4ab2c1;
+	font-weight: normal;
+	padding-bottom: 10px;
+	}
+	h4 {
+	font-weight: normal;
+	color: #d1d2d4;
+	text-align: left;
+	padding: 0px 0px 10px 30px;
+	font-family: Georgia, serif;
+	font-size: 12px;
+	}
+	a:link {
+	color: #d1d2d4;
+	}
+	a:hover {
+	color: #4ab2c1;
+	}
+	a:visited {
+	color: #4ab2c1;
+	}
+}
+.aboutalex {
+	width: 300px;
+	min-height: 550px;
+	float: left;
+	display: inline-block;
+	background: white;
+	border: 2px solid #d1d2d4;
+}
+.aboutnicole {
+	width: 300px;
+	min-height: 550px;
+	display: inline-block;
+	background: white;
+	border: 2px solid #d1d2d4;
+}
+.post2 { 
+	width: 400px;
+	height: 500px; 
+	margin: 5px;
+	background-color: white;
+	border: 2px solid #d1d2d4;
+	overflow-y: scroll;
+	p {
+	padding: 10px;
+	}
+	h3 {
+	padding: 5px;
+	}
+}
+#aboutpic1 {
+	padding-right: 50px;
+}
+#aboutpic2 {
+	padding-right: 50px;
+}
+#aboutpic3 {
+	padding-right: 50px;
+	padding-left: 50px;
+}
+
+
+//////////////////////////* Help *//////////////////
+
+#help h1 {
+	font-weight: normal;
+}
+#helpfaq {
+	width: 700px;
+	margin: 0 auto;
+	background: white;
+	border: 2px solid #d1d2d4;
+	h3 {
+	font-weight: normal;
+	font-size: 25px;
+	padding-top: 20px;
+	color: #4ab2c1;
+	}
+}
+#faq ul {
+	font-size: 16px;
+	padding-top: 20px;
+	margin: 0 auto;
+	text-align: left;
+	width: 500px;
+}
+#helpic1 {
+	padding-right: 50px;
+}
+#helpic2 {
+	padding-right: 50px;
+}
+#helpic3 {
+	padding-right: 50px;
+	padding-left: 50px;
+}
+.hideform2 {
+	p {
+	font-family: Georgia, serif;
+	font-size: 14px;
+	text-align: left;
+	padding-left: 13px;
+	padding-right: 20px
+	}
+	h2 {
+	font-family: Century Gothic, sans-serif;
+	font-size: 18px;
+	padding-top: 0px;
+	margin-bottom: 0px;
+	text-align: left;
+	padding-left: 5px;
+	}
+	text-align: left;
+	padding-left: 100px;
+}
+.hideformcomments {
+	font-family: Century Gothic, sans-serif;
+	font-size: 12px;
+	margin-bottom: 0px;
+	text-align: left;
+	padding-left: 72px;
+}
+#bottomtext {
+	text-align: center;
+	padding-top: 30px;
+	padding-botton: 30px;
+}
+
+
+
+
+///////////////////* Jobs *////////////////////
+
+#jobs h1 {
+	font-weight: normal;
+}
+.position { 
+	margin: 0 auto;
+	width: 600px;
+	min-height: 200px; 
+	padding: 20px 50px 20px 50px;
+	background-color: white;
+	border: 2px solid #d1d2d4;
+	p, ul {
+	font-family: Georgia, serif; 
+	line-height: 18px;
+	font-size: 13px;
+	}
+	ul {
+	padding-left: 20px;
+	}
+	h2 {
+	color: #4ab2c1;
+	}
+}
+#jobspic1 {
+	padding-right: 50px;
+}
+#jobspic2 {
+	padding-right: 50px;
+}
+#jobspic3 {
+	padding-right: 50px;
+	padding-left: 50px;
+}
+
+///// * Modal Windows * //////
+
+.modalize p {
+	text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.navbar .dropdown-menu.bottom-up::after {
+    border-bottom: 0px solid transparent !important;
+    border-top: 6px solid white;
+    top: auto !important;
+    bottom: -6px;
+}
+
+//////// * Drop Up Menu * ///////
+
+
+ul#nav,ul#nav ul {
+	margin: 0;
+	/* padding: 0; */
+	list-style: none;
+}
+ul#nav {
+	/* width:1200px; */
+	height:150px;
+	text-align: center;
+	horizontal-align: middle;
+
+}
+
+ul#nav li {
+	position: relative;
+	color:rgba(255,255,255,0.5);
+	/* text-align: right; */
+
+}
+ul#nav li a {
+	text-decoration: none;
+	color:#000;
+}
+#nav li ul {
+	position: absolute;
+	left: -10px;
+	text-align: left; 
+	top:-215px;
+	margin-left:-999em;
+	border:none;
+	height:215px;
+	background-color: white; 
+	/* background:#fff; */
+
+ /*opacity for IE5+*/
+  filter: alpha(opacity=70);
+  /*opacity for older Mozilla browsers*/
+  -moz-opacity: 1.0;
+  /*opacity for mozilla/safari*/
+  opacity: 1.0;
+}
+
+ul#nav li li{height:auto;border:none;}
+ul#nav li li a{
+	color:#000;
+	/// * padding:5px 10px 5px 20px; * //
+	display:block;
+}
+ul#nav li:hover ul, 
+ul#nav li.over ul {
+	margin-left:0;
+}
+ul#nav li:hover,
+ul#nav li.over,
+ul#nav li:hover a,
+ul#nav li.over a {color:#4ab2c1;}
+
+ul#nav li:hover li a,ul#nav li.over li a{color:#000;}
+ul#nav li li a:hover{color:#4ab2c1;}
+ul#nav li p {padding:5px;}
+ul#nav li.last,ul#nav li.last ul{border:none;width:200px;}
+
+
+

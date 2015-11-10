@@ -1,0 +1,125 @@
+<head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34718344-1']);
+  _gaq.push(['_setDomainName', 'antho.co']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+$(document).ready(function() {
+  $('button').click(function () {
+    $('body').chardinJs('toggle');
+  });
+});
+
+</script>
+
+</head>
+
+<!--link href="chardinjs.css" rel="stylesheet"-->
+<!-- script src="chardinjs.min.js"></script-->
+<% if signed_in? %>
+<div class="wrap">  
+  <div class="top">
+
+    <h1> The Museum </h1>
+          <p>Read all your kin's most recent stories here.</p>
+
+  </div>
+  <div id="show">
+    <div class="main">
+      <div class="horizontal" data-intro="Awesome feed of stories" data-position="bottom">
+            <ol class="microposts" >
+              <%= render 'shared/feed' %>
+            </ol>
+      </div> 
+    </div>
+  </div> 
+  <br><br> 
+  <br><br><br>
+  <div class="startbutton3">
+        <div data-intro="YES DO THIS" data-position="bottom"> <%= link_to 'Start an Anthology', start_path, class: "button" %> &nbsp; &nbsp; &nbsp;
+        <%= link_to 'Contribute a Story', contribute_path, class: "button3" %></div>
+  </div>
+                <!--button>Get Started Guide</button-->
+  <br><br>
+</div> 
+  
+<% else %>
+  <div class="wrap">
+    <div id="landing">
+      <div class="top"></div>
+      <div class="main">
+        <!--img src="http://d3co886wm1hkda.cloudfront.net/assets/Anthologo.png"/--><%# :size => "360x360", :id => "anthologo1" %> <!--my sad attempt to use cloudfront...maybe another day-->
+        <%= image_tag("Anthologo.png", :size => "360x360", :id => "anthologo1") %>
+        <div id="landingtext">
+          <h2>A Timeless Collection of Family Classics</h2>
+          <br>
+          <p>
+            Introducing anthologies, the best place to share<br>meaningful life stories of family and friends.
+            <br><br>
+            <%= link_to "Request an Invite", invite_request_path, class: "button" %> &nbsp; &nbsp; 
+            <%= link_to "Sign in", signin_path, class: "button2" %> 
+          </p>
+        </div>
+      </div>
+      <!-- // MAILCHIMP SUBSCRIBE CODE \\ -->
+  <!-- a href="http://eepurl.com/tMZob">Sign up </a-->
+  <!-- \\ MAILCHIMP SUBSCRIBE LINK // --> 
+      <div class="icons_box">
+        <%= image_tag("iconbanner.png", :size => "400x400", :id => "iconbanner") %>
+        <br>
+        <div class="icons">
+          <%= image_tag("medal.png", :size => "50x100", :id => "medal") %>
+          <br><br>
+          <p><strong>Honor the People in Your Life</strong></p>
+          Pay lasting tribute to the individuals<br> who've impacted you, by contributing <br> anecdotes to their life stories.</br><br>
+        </div>
+        <div class="icons">
+          <%= image_tag("puzzpiece.png", :size => "112x112", :id => "puzzpiece") %>
+          <br><br>
+          <p><strong>Remember It Together</strong></p>
+          Collaborate with friends and family<br>to record the past and present,<br> and in the process inspire the future.<br><br>
+        </div>
+        <div class="icons">
+          <%= image_tag("oblivion.png", :size => "80x117", :id => "oblivion") %>
+          <br><br>
+          <p><strong>Save Your Memories from Oblivion</strong></p>
+          Write down and share<br>your priceless stories today,<br>before they’re forgotten. 
+        </div>
+        <div class="clear"></div>
+        <br><br><br>
+        <div class="icons">
+          <%= image_tag("bridge.png", :size => "112x112", :id => "bridge") %>
+          <br><br>
+          <p><strong>Build Bridges Between Generations</strong></p>
+          Help your children appreciate<br>who went before them,<br>in a medium that they understand.<br><br>
+        </div>
+        <div class="icons">
+          <%= image_tag("computer.png", :size => "100x100", :id => "computer") %>
+
+          <br><br>
+          <p><strong>Give the Past an Online Presence</strong></p>
+          Build the legacies of those<br>who’ve passed away <br> in a shareable, digestible way.<br><br>
+        </div>
+        <div class="icons">
+          <%= image_tag("keys.png", :size => "92x92", :id => "keys") %>
+          <br><br>
+          <p><strong>Safeguard Your Privacy</strong></p>
+          Unlike many social media websites,<br> we will always put your privacy first.
+        </div>
+        <div class="special">
+        <br><br><br>
+          <%= link_to "Request an Invite", invite_request_path, class: "button" %>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="push"></div>
+<% end %>

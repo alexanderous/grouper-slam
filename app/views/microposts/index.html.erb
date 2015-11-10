@@ -1,0 +1,57 @@
+<head>
+<script language="javascript" type="text/javascript">
+     $(document).ready(function () {
+     if ($("[rel=tooltip]").length) {
+     $("[rel=tooltip]").tooltip();
+     }
+   });
+
+</script>
+</head>
+
+<% provide(:title, 'Your Stories & Drafts') %>
+<div class="wrap"> 
+  <div id="showposts">
+    <div class="top">
+        <h1>Your Stories & Drafts</h1>
+          <p>
+          <% if @user.image.blank? %>
+             <%= link_to image_tag("hitchcock.png", :size => "120x120"), @user %> 
+          <% else %>
+             <%= link_to image_tag(@user.image_url(:none), options = {:size => "120x120" }), @user %>
+          <% end %>
+        </p>
+  <br>
+  <br>
+      <!--section-->
+        <%#= render 'shared/stats' %>
+      <!--/section-->
+      <%#= render 'follow_form' if signed_in? %>
+    </div>
+
+
+
+          <%# if @user.microposts.any %>
+            
+              <h2><%= pluralize(@drafts.count, "Draft") %></h2>
+              <ol class="drafts">
+              <%#= render @drafts %><%= render partial: 'shared/draft', collection: @drafts %>
+              </ol>
+            <!--ol class="microposts">
+              <h2>Published Stories</h2>
+              <%#= render @published %>
+            </ol-->
+          <%# end %>
+              <h2><%= pluralize(@published.count, "Published Story") %></h2>
+              <ol class= "drafts">
+                <%= render partial: 'shared/draft', collection: @published %>
+              </ol>
+        
+    <br><br>   
+    <div class="startbutton4">
+        <%= link_to 'Start an Anthology', start_path, class: "button" %> &nbsp; &nbsp; &nbsp;
+        <%= link_to 'Contribute a Story', contribute_path, class: "button3" %>
+    </div> 
+    <br><br>
+  </div>
+</div>

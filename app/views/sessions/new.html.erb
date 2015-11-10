@@ -1,0 +1,32 @@
+<% provide(:title, 'Sign in') %>
+
+<div class="wrap">
+  <div id="signin">
+      <div class="top">
+        <h1>Sign in</h1>
+        <p>Welcome back! Glad you could make it!<br>Enjoy recording your memories!</p>
+      </div>
+      <div class="form">
+        <div id="signin_form">
+          <%= form_for(:session, url: sessions_path) do |f| %>
+
+            <%= f.label :login, "Username" %>
+            <%= f.text_field :login %>
+        <br><br>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+        <br><br>
+            <%= f.submit "Sign in", class: "button" %>
+          <% end %>
+
+          <p>
+            <%= link_to "Forgot your password?", new_password_reset_path %><br>
+            <!--New user?--> <%#= link_to "Sign up here!", start_path %>
+          </p> 
+        </div>
+      </div>
+      <div class="bottom">
+        <%= image_tag("Anthologowhite.png", :size => "100x100", :id => "anthologo2") %>
+      </div>
+    </div>
+</div>

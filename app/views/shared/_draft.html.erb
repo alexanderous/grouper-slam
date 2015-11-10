@@ -1,0 +1,45 @@
+<%#this is for the show_posts page %>
+
+<% if !draft.hide or current_user == draft.subject or current_user == draft.user %>
+<script>
+  $(function(){
+    $("#page-wrap").wrapInner("<table cellspacing='30'><tr>");
+    $(".post").wrap("<td>");
+  });
+</script>
+<script language="javascript" type="text/javascript">
+     $(document).ready(function () {
+     if ($("[rel=tooltip]").length) {
+     $("[rel=tooltip]").tooltip();
+     }
+   });
+
+</script>
+<% @fans = draft.lovers %>
+
+  <article class="postdraft"> 
+        <li>
+            <% if !draft.title.blank? %>
+              <h3><%= link_to draft.title, micropost_path(draft) %></h3><br>
+            <% else %>
+              <h3><%= link_to "Untitled", micropost_path(draft) %></h3><br>   
+            <% end %>
+            <% if !draft.subject.nil? %>
+                Written for <%= link_to draft.subject.name, draft.subject %>
+            <% else %>
+                Written for Someone Awesome
+            <% end %>
+            <br>
+            <span class="bottomstampdraft"><%= link_to "Edit", edit_micropost_path(draft) %>
+                <% if draft.draft? %>
+                  <%= link_to "Preview", micropost_path(draft) %>
+                <% else %>
+                  <%= link_to "View", micropost_path(draft) %>
+                <% end %>
+              </span>
+        </li>      
+  </article> 
+
+<% end %>
+
+

@@ -1,0 +1,85 @@
+<ol <id="<%= anthology_item.id %>">>
+  <% if !anthology_item.user.nil? %>
+      <% if !anthology_item.user.image.blank? %>
+        <%= image_tag(anthology_item.user.image_url(:none), options = {:size => "60x60" }) %>
+      <% end %>
+    <span class="user">
+      <%= link_to anthology_item.user.name, anthology_item.user %>
+    </span>
+  <% end %>
+  <br>
+  <br>
+  <br> 
+  <% if anthology_item.image_url == nil %>
+       <span class="image"></span>
+  <% else %>
+       <span class="image"><%= image_tag anthology_item.image_url(:mega).to_s %></span>
+  <% end %>
+  <br>
+  <span class="dateofevent"><%= anthology_item.dateofevent %></span>
+  <span class="content"><%= anthology_item.content %>
+  </span>
+  <span class="timestamp">
+    Published <%= time_ago_in_words(anthology_item.created_at) %> ago
+  </span>
+  <% if current_user?(anthology_item.user) %> 
+    <%= link_to "delete", anthology_item, method: :delete,
+                                     confirm: "You sure?",
+                                     title: anthology_item.content %>
+    <%= link_to "edit", edit_micropost_path(anthology_item) %>
+    <% end %>
+  <% if current_user.id == anthology_item.subject_id %> 
+    <%= link_to "delete", anthology_item, method: :delete,
+                                     confirm: "You sure?",
+                                     title: anthology_item.content %>
+    <%= link_to "edit", edit_micropost_path(anthology_item) %>
+  <% end %>
+
+  <%#give antho subject option to delete and edit - how?!?!?%>
+</ol>
+
+<%# if anthology_item.comments.any? %>
+  <!-- ol class="comments">
+  <%#= render 'shared/comment_feed' %>
+  </ol>
+<%# end %> -->
+
+<ul>
+  <%# if !anthology_item.comments.nil? %> <!--do we need @micropost.comment?) --> 
+
+    <% anthology_item.comments.each do |comment| %>
+      <div class="user">
+            <% if !comment.user.image.blank? %>
+               <%= image_tag(comment.user.image_url(:none), options = {:size => "35x35" }) %>
+            <% end %>
+          <%= link_to comment.user.name, comment.user %>
+      </div>
+      <div class = "commentbody"><%= comment.body %>
+      </div>  
+      <div class="timestamp">
+          Posted <%= time_ago_in_words(comment.created_at) %> ago
+      </div>
+          <% if current_user?(comment.user) %>
+              <%= link_to "delete", comment, method: :delete, 
+                                     confirm: "You sure?",
+                                     title: comment.body %>
+          <% end %>    
+      </div>
+    <% end %>  
+
+    <aside class="comment newcomment">
+      <div class="commenthead">
+      <% if !current_user.image.blank? %>
+        <%= image_tag(current_user.image_url(:none), options = {:size => "35x35" }) %>
+      <% end %> 
+      <div class="user">
+        <%= link_to current_user.name, current_user %>
+        <br><br>
+        <%= form_for [anthology_item, current_user.comments.new] do |f| %>
+          <%= f.text_field :body, placeholder: "Write a comment..."  %>
+          <%= f.submit "Post" %>
+        <% end %>
+      </div>
+      </div>  
+    </aside>
+  </ul>

@@ -1,0 +1,185 @@
+<script language="javascript" type="text/javascript">
+      $(function(){
+          $("#page-wrap").wrapInner("<table cellspacing='30'><tr>");
+          $(".post").wrap("<td>");
+      });
+
+      $(document).ready(function () {
+        if ($("[rel=tooltip]").length) {
+        $("[rel=tooltip]").tooltip();
+        }
+      });
+</script>
+<%#this is for the user/show and user/self page %>
+<%#this fully works! %>
+<% @fans = anthology_item.lovers %>
+<% if !anthology_item.draft %>  
+  <%# if anthology_item.subject.friend_with? current_user %><%# this doesn't make sense...how can you see your own posts since you're not friends with yourself? %>
+    <% if !anthology_item.hide or anthology_item.subject == current_user or anthology_item.user == current_user %>
+      <%# @subject = User.find(params[:id]) %>
+      <article class="post"> 
+        <div class="postcontainer">
+          <div class="postop">
+            <ol id="<%= anthology_item.id %>">
+              <p>
+              <%#= @subject.name %>
+                <span class="dateofevent">
+                  <% if anthology_item.dateofevent.nil? %>
+                      *
+                  <% else %>
+                     <%= anthology_item.dateofevent %>
+                  <% end %>
+                  <br>
+                </span>
+                <% if anthology_item.hide %>
+                    <a href="#" rel="tooltip" title="This story is private, and only visible to the author and the subject." data-placement="left" ><strong>Personalized</strong></a>
+                <% end %>
+                
+                <% if anthology_item.image_url != nil %>
+                   <span class="image"><%= link_to image_tag(anthology_item.image_url(:grande).to_s), micropost_path(anthology_item) %></span>
+                <% end %>
+
+                <h5><strong><%= link_to anthology_item.title, micropost_path(anthology_item) %></strong></h5>
+                <span class="content"><%= link_to simple_format(anthology_item.content), micropost_path(anthology_item) %></span>
+              </p>
+            </ol>
+          </div>
+          <%# if !anthology_item.user.nil? %> <!--this is to prevent contributions from users who've deleted their accounts from breaking the system (their posts will also still show, albeit their pics and names will not). --> 
+          <%# end %>
+        </div>
+        <div class="postbottom">
+          <div class="userimage">         
+              <% if !anthology_item.user.image.blank? %>
+                  <%= link_to image_tag(anthology_item.user.image_url(:none), options = {:size => "60x60" }), anthology_item.user %>
+              <% else %>
+                   <%= link_to image_tag("hitchcock.png", :size => "60x60"), anthology_item.user %>
+              <% end %> 
+          </div>
+          <div class="postinfo"> 
+            <p><br>
+              <span class="timestamp">By <strong><%= link_to anthology_item.user.name, anthology_item.user %></strong></span>
+              <br>
+              <span class="timestamp">
+                <%= time_ago_in_words(anthology_item.created_at) %> ago
+                <br>
+
+                <%# if current_user.id == anthology_item.user_id %> 
+                  <%#= link_to "Delete", anthology_item, method: :delete,
+                                           confirm: "You sure?",
+                                           title: anthology_item.content %>
+                  <%#= link_to "Edit", edit_micropost_path(anthology_item) %>
+                <%# elsif current_user.id == anthology_item.subject_id %> 
+                  <%#= link_to "Delete", anthology_item, method: :delete,
+                                           confirm: "You sure?",
+                                           title: anthology_item.content %>
+                  <%#= link_to "Edit", edit_micropost_path(anthology_item) %>
+                <%# elsif current_user.id == anthology_item.subject.admin_id && anthology_item.subject.dead? %> 
+                  <%#= link_to "Delete", anthology_item, method: :delete,
+                                           confirm: "You sure?",
+                                           title: anthology_item.content %>
+                  <%#= link_to "Edit", edit_micropost_path(anthology_item) %>
+                <%# end %>
+                <% if anthology_item.comments.blank? %>
+                  <a href="<%= micropost_comments_path(anthology_item) %>">
+                  <%="Comment"%></a>
+                <% else %>
+                  <a href="<%= micropost_comments_path(anthology_item) %>">
+                  <span id="microposts" class="stat">
+                    <%= pluralize(anthology_item.comments.count, "Comment") %></span></a>
+                <% end %>
+                <% if anthology_item.lovers.count > 0 %>
+                  <a href="#" rel="tooltip" title="<% @fans.each do |user| %> <%= user.name %> <% end %>" data-placement="right"><%= pluralize anthology_item.lovers.count, "Love" %></a>
+                <% end %>
+              </span>
+            </p>
+          </div>
+        </div>
+      </article> 
+    <%# end %>
+
+  <% elsif current_user.id == anthology_item.user_id or current_user.id == anthology_item.subject_id %>
+
+      <%# @subject = User.find(params[:id]) %>
+      <article class="post"> 
+        <div class="postcontainer">
+          <div class="postop">
+            <ol id="<%= anthology_item.id %>">
+               <p> 
+              <span class="dateofevent">
+              <% if anthology_item.dateofevent.nil? %>
+                  *
+              <% else %>
+                 <%= anthology_item.dateofevent %>
+              <% end %>
+              </span>
+              <%#= @subject.name %>
+              
+                <% if anthology_item.hide %>
+                <br>
+                (Personalized Story)
+                <% end %>
+              </p>
+              <% if anthology_item.image_url != nil %>
+                 <span class="image"><%= link_to image_tag(anthology_item.image_url(:grande).to_s), micropost_path(anthology_item) %></span>
+              <% end %>
+              <br>
+              <h5><strong><%= link_to anthology_item.title, micropost_path(anthology_item) %></strong></h5>
+              <span class="content"><%= link_to simple_format(anthology_item.content), micropost_path(anthology_item)  %></span>
+            </ol>
+          </div>
+          <%# if !anthology_item.user.nil? %> <!--this is to prevent contributions from users who've deleted their accounts from breaking the system (their posts will also still show, albeit their pics and names will not). --> 
+          <%# end %>
+        </div>
+        <div class="postbottom">
+          <div class="userimage">         
+              <% if !anthology_item.user.image.blank? %>
+                  <%= link_to image_tag(anthology_item.user.image_url(:none), options = {:size => "60x60" }), anthology_item.user %>
+              <% else %>
+                   <%= link_to image_tag("hitchcock.png", :size => "60x60"), anthology_item.user %>
+              <% end %> 
+          </div>
+          <div class="postinfo"> 
+            <p>
+              <span class="timestamp"><a href="<%= micropost_path(anthology_item) %>"><%="View Full Story"%></a></span>
+              <br>
+              <span class="timestamp">Contributed by <strong><%= link_to anthology_item.user.name, anthology_item.user %></strong></span>
+              <br>
+              <span class="timestamp">
+                Published <%= time_ago_in_words(anthology_item.created_at) %> ago
+                <br>
+
+                <%# if current_user?(anthology_item.user) %> 
+                  <%#= link_to "Delete", anthology_item, method: :delete,
+                                           confirm: "You sure?",
+                                           title: anthology_item.content %>
+                  <%#= link_to "Edit", edit_micropost_path(anthology_item) %>
+                <%# elsif current_user.id == anthology_item.subject_id %> 
+                  <%#= link_to "Delete", anthology_item, method: :delete,
+                                           confirm: "You sure?",
+                                           title: anthology_item.content %>
+                  <%#= link_to "Edit", edit_micropost_path(anthology_item) %>
+                <%# elsif current_user.id == anthology_item.subject_id @pseudo_user.user_id %> 
+                  <%#= link_to "delete", anthology_item, method: :delete,
+                                           confirm: "You sure?",
+                                           title: anthology_item.content %>
+                  <%#= link_to "edit", edit_micropost_path(anthology_item) %>
+                <%# end %>
+                <% if anthology_item.comments.blank? %>
+                  <a href="<%= micropost_comments_path(anthology_item) %>">
+                  <%="Comment"%></a>
+                <% else %>
+                  <a href="<%= micropost_comments_path(anthology_item) %>">
+                  <span id="microposts" class="stat">
+                    <%= pluralize(anthology_item.comments.count, "Comment") %></span></a>
+                <% end %>
+                <% if anthology_item.lovers.count > 0 %>
+                  <a href="#" rel="tooltip" title="<% @fans.each do |user| %> <%= user.name %> <% end %>" data-placement="right"><%= pluralize anthology_item.lovers.count, "Love" %></a>
+                <% end %>
+              </span>
+            </p>
+          </div>
+        </div>
+      </article> 
+  <% end %>
+<% end %>
+

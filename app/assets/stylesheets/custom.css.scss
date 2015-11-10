@@ -1,0 +1,253 @@
+@import "bootstrap";
+
+
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* universal */
+
+html {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  height: 100%;
+}
+body {
+  padding: 0px;
+  margin: 0px auto; 
+  font-family: Century Gothic, sans-serif;
+  height: 100%
+}
+section {
+  overflow: auto;
+}
+textarea {
+  resize: vertical;
+  height: 30px;
+}
+.center {
+  text-align: center;
+}
+
+
+
+
+///////////////////* typography */////////////////
+
+@font-face {
+  font: {
+    family: 'rns_camelia';
+    weight: 'normal';
+    style: 'normal';
+  }
+  src:  asset-url('rns_camelia.eot', fonts);
+  src:  asset-url('rns_camelia.eot', fonts) format('embedded-opentype'),
+        asset-url('rns_camelia.woff', fonts) format('woff'),
+        asset-url('rns_camelia.ttf', fonts) format('truetype'),
+        asset-url('rns_camelia.svg#rns_camelia', fonts) format('svg');
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+  font-family: Century Gothic, sans-serif;
+  text-align: center;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-top: 18px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: normal;
+  color: black;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+  font-family: Century Gothic, sans-serif;
+}
+
+.btn-large {
+  font-family: Century Gothic, sans-serif;
+  font-weight: bold;
+}
+
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/* sidebar */
+
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid black;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.6em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+    }
+  }
+}
+.stats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid black;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: black;
+    }
+  }
+  strong {
+    display: inline;
+  }
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  height: auto;
+  margin-bottom: 0px;
+  @include box_sizing;
+  date_select { display: inline; }  
+}
+
+.microposttextarea #micropost_content {
+  height: 550px;
+  width: 450px;  
+}
+
+.microposttitle input {
+  height: 25px;
+  width: 450px;
+}
+.addamessage textarea {
+  height: 100px;
+  width: 500px;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+.field4 {
+  text-align: left;
+  width: 450px;
+  margin: 0 auto;
+
+}
+/* users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid black;
+    &:last-child {
+      border-bottom: 1px solid black;
+    }
+  }
+}
+
+/* microposts */
+
+ol {
+  margin: 0;
+  font-family: Georgia, serif; 
+}
+.microposts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.content {
+  max-width: 200px;
+  max-height: 200px;
+  display: inline;
+  font-weight: normal;
+  overflow-x: scroll;
+}
+aside {
+  textarea {
+    margin-bottom: 5px;
+  }
+}
+
+/* comments */
+
+.comment_item {
+  list-style: none;
+  margin: 5px 0 0 0;
+
+  li {
+    padding: 5px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.comments {
+  list-style: none;
+  margin: 5px 0 0 0;
+
+  li {
+    padding: 5px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}

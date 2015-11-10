@@ -1,0 +1,7 @@
+<% @micropost = feed_item %>
+	<% if current_user.loving?(@micropost) %>
+		<%= render 'unlove' %>
+	<% else %>
+		<%= render 'love' %>
+	<% end %>
+

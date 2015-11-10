@@ -1,0 +1,7 @@
+<% if !@anthology_items.nil? %>
+  <%#=pluralize(@anthology_items.count, "story") %> <!-- shows how many stories on an anthology! -->
+  <ol class="microposts">
+    <%= render partial: 'shared/anthology_item', collection: @anthology_items %>
+  </ol>
+<% end %>
+

@@ -1,0 +1,92 @@
+<head>
+<script language="javascript" type="text/javascript">
+
+     $(document).ready(function () {
+     if ($("[rel=tooltip]").length) {
+     $("[rel=tooltip]").tooltip();
+     }
+   });
+
+/* $(document).ready(function() {
+  if ($(".microposttextarea").length > 0) {
+    setTimeout(autoSaveMicropost, 1000); 
+  }    
+});
+
+function autoSaveMicropost() {
+  $.ajax({
+    type: "POST",
+    url: "/microposts/autosave",
+    data: $(".microposttextarea").serialize(),
+    dataType: "script",
+    success: function(data) {
+      if(data && data == 'success') {
+        alert ('success!')
+      } else {
+        alert ('autosave failed')
+      }
+      console.log(data);
+    }
+  });
+  setTimeout(autoSaveMicropost, 1000);
+} */
+
+</script>
+</head>
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather:300' rel='stylesheet' type='text/css'>
+
+<div class="wrap">
+  <% provide(:title, 'Contribute a Story') %>
+  <div class="top">
+    <h1>Contribute a Story</h1>
+    <p>Start the writing process or publish your final story here.</p>
+  </div>
+  <div class="form">
+      <%= form_for(@micropost) do |f| %>
+        <%= render 'shared/error_messages', object: @micropost %>
+        <br><br>
+        <div class="editstory">
+          <a href="#" rel="tooltip" title="You will only be able to select your kin as a subject. If someone isn't yet your kin, go to his/her anthology and contribute a story there." data-placement="left" ><%= f.label :subject_name, "Subject" %></a>
+          <%= f.collection_select :subject_id, User.where(["id in (?)", current_user.friends]), :id, :name, :include_blank => true, :prompt => 'Choose name' %>
+          <%#= f.text_field :subject_name, data: {autocomplete_source: subjects_path} %><!--this is the one that worked in development mode; not entirely sure why it didn't work in production mode -->
+          <%#= f.text_field :subject_name, data: {autocomplete_source: User.order(:name).map(&:name)} %>
+          <br><br>
+          <div class="microposttitle">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </div>
+          <br>
+                    <% if @micropost.image_url == nil %>
+            <%= f.label :image, "Upload An Image" %>
+          <% else %>
+            <%= f.label :image, "Image" %>
+            <span class="image"><%= image_tag(@micropost.image_url(:grande).to_s, options = {:size => "250x250" }) %></span>
+          <% end %> 
+          <%= f.file_field :image %>
+          <br><br>
+          <% if !@micropost.image.blank? %>
+                <%= f.check_box :remove_image %> Remove Image
+                <br><br>
+          <% end %>
+          <div class="microposttextarea">
+            <%= f.label :content, "Story" %>
+            <%= f.text_area :content %>
+          </div>
+          <br><br>
+          <%= f.label :dateofevent, "Date" %>
+          <%= f.date_select :dateofevent, :start_year => 2013, :end_year => 1850, :discard_day => true, :prompt => {:month => 'Choose month', :year => 'Choose year'} %>
+        <br><br>
+        <% if current_user.admin? %>
+          <%= f.check_box("hide") %> <a href="#" rel="tooltip" title="This makes the story private, and keeps it between you and the subject." data-placement="right" >Personalize this Story</a>
+         <br>
+        <% end %>
+        <br>
+        <%= f.submit "Save as Draft", :name => "draft_button", class: "button2a" %> &nbsp; &nbsp;
+        <%= f.submit "Publish", :name => "publish_button", class: "button3" %>
+        <% end %>
+        <br><br><br>
+        <%= link_to "Back", :back, class: "button2a" %>
+    </div>
+  </div>
+</div>

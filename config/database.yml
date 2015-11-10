@@ -1,0 +1,33 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: antho_development
+  pool: 5
+  username: antho
+  password: 
+  host: localhost
+  port: 5432
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: antho_test
+  pool: 5
+  username: antho
+  password:
+  host: localhost
+  port: 5432 
+
+#production:
+#  adapter: postgresql
+#  encoding: unicode
+#  database: antho_production
+#  pool: 25
+
+
+
+
+#do I need to add a production set of data points? and then if I do, then increase pool thread to 25. 
+#the only reason I deleted it before, I think it was causing me problems in setting up the amazon S3 database.
+#cucumber:
+#  <<: *test

@@ -1,0 +1,105 @@
+<%#this is for the show_posts page %>
+
+<% if !micropost.draft %>
+  <% if !micropost.hide  or current_user == micropost.subject or current_user == micropost.user %>
+  <script>
+    $(function(){
+      $("#page-wrap").wrapInner("<table cellspacing='30'><tr>");
+      $(".post").wrap("<td>");
+    });
+  </script>
+  <script language="javascript" type="text/javascript">
+       $(document).ready(function () {
+       if ($("[rel=tooltip]").length) {
+       $("[rel=tooltip]").tooltip();
+       }
+     });
+
+  </script>
+  <% @fans = micropost.lovers %>
+
+
+    <article class="post"> 
+      <div class="postcontainer">
+        <div class="postop">
+          <ol id="<%= micropost.id %>">
+          <p>
+          <span class="dateofevent">
+          <% if micropost.dateofevent.nil? %>
+                    *
+          <% else %>
+                   <%= micropost.dateofevent %>
+          <% end %>
+          </span>
+          <br>
+          <% if !micropost.subject.nil? %>
+              Written for <strong><%= link_to micropost.subject.name, micropost.subject %></strong>
+          <% end %>
+          <br>
+            <% if micropost.hide %>
+              <a href="#" rel="tooltip" title="This story is private, and only visible to the author and the subject." data-placement="left" ><strong>Personalized</strong></a>
+            <% end %>
+          </p>
+            <% if !micropost.image_url.nil? %>
+               <span class="image"><%= link_to image_tag(micropost.image_url(:grande).to_s), micropost_path(micropost) %></span>
+            <% end %>
+            <h5><strong><%= link_to micropost.title, micropost_path(micropost)  %></strong></h5>
+            <span class="content"><%= link_to simple_format(micropost.content), micropost_path(micropost) %></span>
+          </ol>
+        </div>
+      </div>
+        <%# if !micropost.user.nil? %> <!--this is to prevent contributions from users who've deleted their accounts from breaking the system (their posts will also still show, albeit their pics and names will not). --> 
+            <%# end %>
+      <div class="postbottom">
+          <div class="userimage">         
+              <% if !micropost.user.image.blank? %>
+                  <%= link_to image_tag(micropost.user.image_url(:none), options = {:size => "60x60" }), micropost.user %>
+              <% else %>
+                   <%= link_to image_tag("hitchcock.png", :size => "60x60"), micropost.user %>
+              <% end %> 
+          </div>
+          <div class="postinfo"> 
+            <p><br>
+              <span class="timestamp">By <strong><%= link_to micropost.user.name, micropost.user %></strong></span>
+              <br>
+
+            <span class="timestamp">
+              <%= time_ago_in_words(micropost.created_at) %> ago
+              <br>
+
+              <%# if current_user?(micropost.user) %> 
+                <%#= link_to "Delete", micropost, method: :delete,
+                                         confirm: "You sure?",
+                                         title: micropost.content %>
+                <%#= link_to "Edit", edit_micropost_path(micropost) %>
+              <%# elsif current_user.id == micropost.subject_id %> 
+                <%#= link_to "Delete", micropost, method: :delete,
+                                         confirm: "You sure?",
+                                         title: micropost.content %>
+                <%#= link_to "Edit", edit_micropost_path(micropost) %>
+              <%# elsif current_user.id == anthology_item.subject_id @pseudo_user.user_id %> 
+                <%#= link_to "delete", anthology_item, method: :delete,
+                                         confirm: "You sure?",
+                                         title: anthology_item.content %>
+                <%#= link_to "edit", edit_micropost_path(anthology_item) %>
+              <%# end %>
+              <% if micropost.comments.blank? %>
+                <a href="<%= micropost_comments_path(micropost) %>">
+                <%="Comment"%></a>
+              <% else %>
+                <a href="<%= micropost_comments_path(micropost) %>">
+                <span id="microposts" class="stat">
+                  <%= pluralize(micropost.comments.count, "Comment") %></span></a>
+              <% end %>
+              <% if micropost.lovers.count > 0 %>
+                  <a href="#" rel="tooltip" title="<% @fans.each do |user| %><ol><%= user.name %></ol><% end %>" data-placement="right"><%= pluralize micropost.lovers.count, "Love" %></a>
+              <% end %>
+            </span>
+          </p>
+        </div>
+      </div>
+    </article> 
+
+  <% end %>
+<% end %>
+

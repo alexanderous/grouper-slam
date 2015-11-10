@@ -1,0 +1,77 @@
+<head>
+<script language="javascript" type="text/javascript">
+
+function showHide(shID) {
+  if (document.getElementById(shID)) {
+    if (document.getElementById(shID+'-show').style.display != 'none') {
+      document.getElementById(shID+'-show').style.display = 'none';
+      document.getElementById(shID).style.display = 'block';
+    }
+    else {
+      document.getElementById(shID+'-show').style.display = 'inline';
+      document.getElementById(shID).style.display = 'none';
+    }
+  }
+}
+     $(document).ready(function () {
+     if ($("[rel=tooltip]").length) {
+     $("[rel=tooltip]").tooltip();
+     }
+   });
+</script>
+</head>
+
+
+<div id="hideform">
+  <p>
+    <a href="#" id="example-show" class="button2a" 
+    onclick="showHide('example');return false;">Contribute Here</a>
+  </p>
+  <div id="example" class="more">
+    <p>
+    <a href="#" id="example-hide" class="button2a" 
+    onclick="showHide('example');return false;">Hide Form</a>
+    </p>
+    <p>
+      <div class="micropostform">
+        <%= form_for(@micropost) do |f| %>
+        <%#= render 'shared/error_messages', object: f.object %>
+        <br>
+        <%= f.hidden_field :subject_id, :value => @user.id %>
+        <div id="addstory">
+          <h4>Contribute a Memory</h4>
+          <br>
+          <div class="field">
+            <a href="#" rel="tooltip" title="All fields, including this one, are optional" data-placement="right" > Title</a>
+            <%= f.text_field :title %>
+          </div>  
+          <%#= f.hidden_field :key %>
+          <div class="field">
+            <%= f.text_area :content, placeholder: "Write about a time this person impacted your life." %>
+          </div>
+        </div>
+        <div id="addpicture">
+          <h4>Additional Information</h4>
+          <br>
+          <a href="#" rel="tooltip" title="When did the story happen?" data-placement="right" > Date</a>
+          <div class="field">
+            <%= f.date_select :dateofevent, :start_year => 2013, :end_year => 1850, :discard_day => true, :prompt => {:month => 'Month', :year => 'Year'} %>
+          </div> 
+          <br>
+          <% if current_user.admin? %>
+            <%= f.check_box("hide") %> <a href="#" rel="tooltip" title="This makes the story private, and keeps it between you and the subject." data-placement="right" > Personalize</a>
+          <% end %>
+          <a href="#" rel="tooltip" title="The image takes a few seconds to process, so don't worry if you see a blank image." data-placement="right" ><h5>Add a Picture</h5></a>
+          <div class="field">
+            <h5><%= f.file_field :image %></h5>
+          </div>
+          <br>
+          <h5><%= f.submit "Save as Draft", :name => "draft_button", class: "button2a" %> &nbsp; &nbsp;
+          <%= f.submit "Publish", :name => "publish_button", class: "button3" %></h5>
+          <% end %>
+        </div>
+      </div>
+    </p>
+  </div>
+
+</div>

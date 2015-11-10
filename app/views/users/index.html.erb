@@ -1,0 +1,128 @@
+<head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34718344-1']);
+  _gaq.push(['_setDomainName', 'antho.co']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<% provide(:title, 'Anthologies') %>
+<div class="wrap">	
+	<div id="anthologies">
+	    <div class="top">
+	    	<h1>Anthologies</h1>
+			<% if current_user.microposts.count > 0 %>
+				<p>
+				Browse through the collection of anthologies, <br>or create one for someone else!
+				</p>
+			<% end %>
+	    </div>
+		
+	    <div>
+	    	<% if current_user.microposts.count < 30 %>
+	    		<div class="startbutton2">
+					<a href="#myModal" role="button" class="button2a" data-toggle="modal">The Antho Philosophy</a>
+			    </div>
+
+			    <!-- Modal -->
+			    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			        <h3 id="myModalLabel">Welcome to Antho!</h3>
+			      </div>
+			      <div class="modal-body">
+			        <br>
+			        
+				        <p>Thank you for joining the movement to publish the inspiring stories of everyday people.</p> 
+
+				        <p>As one of Antho's earliest contributors, you will be both a creator and ambassador of Antho’s foundational culture.</p>
+
+				        <p>You’ll often be writing the first story on someone’s anthology. Begin with the end in mind; your stories -- in conjunction with stories by other people -- will, moment by moment, recreate that person’s expansive life history.</p>
+						<br>
+				        <p>The platform only has two guidelines:</p>
+				        <br>
+				        <p><strong>1.) Celebrate the good.</strong></p> 
+
+				        <p>We envision Antho to be a place where we celebrate human triumph. Certain life stories may be more colorful than others, but remember that first and foremost we seek to honor the people in our lives.</p> 
+				        <br>
+				        <p><strong>2.) Look for it in others.</strong></p> 
+
+				        <p>Just like how no one can pay a proper tribute to themselves in the real world, no one can do that on Antho either. You can only publish on or start someone else’s anthology. So when writing your stories, make your subject the star!</p>
+						<br>
+				        <p>Now give it a go!</p>
+				     
+			      </div>
+			      <div class="modal-footer">
+			        <button class="button" data-dismiss="modal" aria-hidden="true">Close</button>
+			        <!--button class="button">Save changes</button-->
+			      </div>
+			    </div>  
+		<% end %>
+		</div>
+		    <div id="antholist">
+		    	<div id="search">
+		    		<br>
+
+					<%# if current_user.microposts.count < 1 %>
+						
+					<%# end %>
+					<%= form_tag users_path, :method => 'get' do %>
+						<br>
+						<%= text_field_tag :search, params[:search], placeholder: "Type a name here"  %> 
+						<br><br>		
+						<%= submit_tag "Search", class: "button", :name => nil %>
+					<% end %>
+					<%#= will_paginate %>
+				</div>
+				<br>
+	<!--div class="pagination">
+	  <ul>
+	    <li><a href="#">Prev</a></li>
+	    <li><a href="#">1</a></li>
+	    <li><a href="#">2</a></li>
+	    <li><a href="#">3</a></li>
+	    <li><a href="#">4</a></li>
+	    <li><a href="#">Next</a></li>
+	  </ul>
+	</div--><h2> The Index </h2>
+				<div id="livinglegacyantho">
+				
+				<% if @users.count < 1 %>
+					<h4>There are no results for your search. </h4>
+				<% else %>	
+				  <%= will_paginate @users %>
+					<ul class="users">
+
+		  				<%= render @users %> 
+		  				<!--eventually just want possible friends (dependent on mutual friends) HOWEVER if I delete render @users, then search doesn't work! .common_friends_with(current_user) -->
+		  				<!--br>Possible Friends<br-->
+		  				<%#= render @possible_friends %>
+		  				</ul> 
+
+					
+				  <%= will_paginate %>
+				 <% end %>
+				
+				</div>
+				<!--div id="legacyantho">	
+					<%#= render 'shared/pseudo_index' %>
+				</div-->
+		    </div>
+		<br><br>    
+		<div class="startbutton4">
+        <%= link_to 'Start an Anthology', start_path, class: "button" %> &nbsp; &nbsp; &nbsp;
+        <%= link_to 'Contribute a Story', contribute_path, class: "button3" %>
+	    </div>
+	    <br><br>
+	</div>
+</div>
+

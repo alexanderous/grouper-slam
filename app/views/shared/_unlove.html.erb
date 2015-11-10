@@ -1,0 +1,7 @@
+<%#= form_for(current_user.loves.find_by_loved_id(@micropost),
+             html: { method: :delete }, remote: true) do |f| %>
+<%= form_for(current_user.loves.find_by_loved_id(@micropost),
+             html: { method: :delete }) do |f| %>
+  <%#= f.submit "Unlove", class: "btn btn-mini" %>
+  <%= link_to_submit 'Unlove' %>
+<% end %>

@@ -1,0 +1,131 @@
+<head>
+<script language="javascript" type="text/javascript">
+
+function showHide(shID) {
+  if (document.getElementById(shID)) {
+    if (document.getElementById(shID+'-show').style.display != 'none') {
+      document.getElementById(shID+'-show').style.display = 'none';
+      document.getElementById(shID).style.display = 'block';
+    }
+    else {
+      document.getElementById(shID+'-show').style.display = 'inline';
+      document.getElementById(shID).style.display = 'none';
+    }
+  }
+}
+$(document).ready(function () {
+  if ($("[rel=tooltip]").length) {
+    $("[rel=tooltip]").tooltip();
+  }
+  $("#user_dead").click(function() {
+    $("#emailprompt").toggle('slow');
+  });
+});
+
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34718344-1']);
+  _gaq.push(['_setDomainName', 'antho.co']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<!--form> <this is the jquery base for dynamic HTML forms>
+    <div>Are you creating an anthology for someone departed or incapable of managing their own account?
+        <select id="in_school">
+            <option selected="selected">Please choose</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <div id="legacy_school_yes" class="in_school_input" style="display: none;">
+        What
+        <input type="text" name="grade" />
+    </div>
+    <div id="in_school_no" class="in_school_input" style="display: none;">
+        What's the e-mail address for
+        <input type="text" name="graduation_year" />
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+<script>
+$("#legacy_antho").change(function() {
+    var legacy_antho = $(this).val();
+    $(".in_school_input").hide("fast", function() {
+        $("#legacy_antho_" + legacy_antho).show("slow");
+    });
+});
+</script-->
+
+<% provide(:title, 'Create an Anthology') %>
+<div class="wrap">
+  <div id="signup">
+      <div class="top">
+        <h1>Start an Anthology</h1>
+        <p>You can create an anthology for anyone young or old, here or gone!  
+      </div>
+      <div class="form">
+        <div id="signup_form">
+            <%= form_for(@user) do |f| %>
+            <%= render 'shared/error_messages', object: @user %>
+
+            <%= f.hidden_field :login, :value => @user.initiate_token %>
+
+            <%= f.label :name, "Full Name of Person" %>
+            <%= f.text_field :name %>
+            <br><br>
+
+            <% if @user.image.blank? %>
+                <p><strong>Add a Profile Picture</strong></p>
+            <% else %>
+            <p><strong>Change Profile Picture</strong>
+                
+                <br><br>       
+                    <%= image_tag @user.image_url(:none), options = {:size => "100x100", :class => "profilepic"} %> 
+                </p>      
+            <% end %>
+            <%= f.file_field :image %>
+            <br><br>
+
+            <p><%= f.check_box("dead") %><a href="#" rel="tooltip" title="Check this box if the person is a small child, a seasoned senior citizen, or someone who has passed away. You will be designated as the admin of the anthology and will manage its contents." data-placement="left" > This person has passed away or is unable to manage his/her own account.</a></p>
+            <br>
+
+            <span id="emailprompt">
+              <%= f.label :email, "Email Address of Person" %>
+
+              <%= f.text_field :email %> 
+              <br><br>
+              <div class="addamessage">
+                <%= f.label :message, "Add a Message to the Invitation" %>
+                <%= f.text_area :message, :placeholder => "Introduce your friend or relative to Antho here." %> 
+                <br><br>
+              </div>
+            </span>
+
+            <%= f.hidden_field :password, :value => :initiate_token %>
+            <%= f.hidden_field :password_confirmation, :value => :initiate_token %>
+
+            <%= f.hidden_field :admin_id, :value => current_user.id %>
+
+            <%#= f.hidden_field :active, :value => false %>
+            <br>
+            <%= f.submit "Create", class: "button3" %>
+            <br><br>
+        </div>
+      <% end %>
+      </div>
+    </div>
+</div>

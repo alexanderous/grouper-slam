@@ -1,0 +1,23 @@
+<div class="wrap">
+	<div id="passwordreset2">
+		<div class="top">
+	      	<h1>Reset Your Password</h1>
+	      	<p>No worries, we all forget sometimes.</p>
+	  	</div>
+	 	<%= form_tag password_resets_path, :method => :post do %>
+		<div class="field4">
+			<%= label_tag :email, "Please enter your email" %>
+			<%= text_field_tag :email, params[:email] %>
+			<%#= label_tag :login, "Please enter your Username" %>
+			<%#= text_field_tag :login, params[:login] %>
+			<br><br>
+			<div class="actions"><%=submit_tag "Submit", class: "button3" %></div>
+		</div>
+		<br><br>
+		
+		<% end %>
+		<div class="bottom">
+		    <%= image_tag("Anthologowhite.png", :size => "100x100", :id => "anthologo2") %>
+	  	</div>
+	</div>
+</div>

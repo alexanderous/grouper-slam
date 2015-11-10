@@ -1,0 +1,15 @@
+<p><%= @user.name %>,</p>
+
+<p>A friend or relative of yours just contributed to your life story on Antho!</p>
+
+<p>Read your friend's story of you by <%= link_to "clicking here", user_url(@user) %>.</p>
+
+<p>If you've never used Antho before, welcome! Someone you know just started your life story. <%= link_to "Click here", edit_invite_url(@user.invite_token) %> to set up your account. This link will expire in 48 hours. </p>
+
+<p>Antho is dedicated to helping people capture the life stories of friends and family. Contribute your stories and memories today!</p>
+
+
+<p>Regards,</p>
+<p>Team Antho</p>
+
+<p><%= image_tag attachments["Anthologowhite.jpg"].url, :size => "100x100" %></p>

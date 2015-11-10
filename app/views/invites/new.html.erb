@@ -1,0 +1,19 @@
+<div class="wrap"> 
+  <div id="passwordreset2">
+    <div class="top">
+          <h1>Set Up Your Account</h1>
+          <p>Welcome to Antho! <br>We hope you enjoy recording memories and creating anthologies for others.</p>
+    </div>
+    <%= form_tag invites_path, :method => :post do %>
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email, params[:email] %>
+      <div class="actions"><%=submit_tag "Verify Your Email", class: "button3" %></div>
+      <br><br>
+    </div>
+    <% end %>
+    <div class="bottom">
+        <%= image_tag("Anthologowhite.png", :size => "100x100", :id => "anthologo2") %>
+    </div>
+  </div>
+</div>

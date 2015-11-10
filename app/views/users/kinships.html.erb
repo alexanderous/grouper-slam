@@ -1,0 +1,66 @@
+<%# if current_user.dead? %> <!-- don't think this portion is necessary? I've made sure all other links make you sign in as admin (if you're in the account that's currently dead-->
+    <%# sign_in current_user.admin %>
+<%# end %>
+
+<% provide(:title, @user.name) %>
+
+<div class="wrap">
+    <div class="top">
+        <% if @user == current_user && !@user.dead %>
+            <h1>Your Kin</h1>
+            <p>This is a list of your close friends and family.</p><br>
+        <% else %>
+            <h1><%= link_to @user.name, @user %>'s Kin</h1>
+            <p>This is a list of <%= link_to @user.name, @user %>'s close friends and family.</p><br>
+        <% end %>            
+        <p><% if @user.image.blank? %>
+                <%= link_to image_tag("hitchcock.png", :size => "120x120"), @user %>
+            <% else %>
+                <%= link_to image_tag(@user.image_url(:none), :class => "anthopic"), @user %>
+            <% end %></p>
+
+
+        <% if @user.dead && current_user == @user %>
+            <p> As <%= @user.name %>'s anthology admin, you manage the kin requests here.<br><!--All relationship details reflect that of <%#= @user.name %>'s, not yours.</p-->
+        <% end %>
+    </div>
+    <div class="relationships">
+          <h2><strong>Kin</strong></h2>
+        <ul class="users">
+            <%= render @friends %>
+        </ul>    
+     
+        <% if @user.dead && current_user == @user %>
+
+            <h2><strong>Requests</strong></h2>
+
+            <% if @pending_requests.blank? %>
+                <p><%= @user.name %> has no requests at this time.</p>
+            <% else %>
+                <ul class="users">
+                   <%= render @pending_requests %>
+                </ul>   
+            <% end %>
+        <% elsif @user == current_user %>
+            <h2><strong>Requests</strong></h2>
+
+            <% if @pending_requests.blank? %>
+                <p>You have no requests at this time.</p>
+            <% else %>
+                <ul class="users">
+                   <%= render @pending_requests %>
+                </ul>   
+            <% end %> 
+    
+        <% end %>
+
+        <%#= link_to "Your Requests", requests_path %>
+             
+          <!-- h3>Mutual Kin</h3>
+      <%# if @common_friends.blank? %>
+        <p>You have no mutual kin with <%= @user.name %>.</p-->
+      <%# else %>
+        <%#= render @common_friends %>
+      <%# end %>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+<head>
+<script language="javascript" type="text/javascript">
+
+function showHide(shID) {
+  if (document.getElementById(shID)) {
+    if (document.getElementById(shID+'-show').style.display != 'none') {
+      document.getElementById(shID+'-show').style.display = 'none';
+      document.getElementById(shID).style.display = 'block';
+    }
+    else {
+      document.getElementById(shID+'-show').style.display = 'inline';
+      document.getElementById(shID).style.display = 'none';
+    }
+  }
+}
+     $(document).ready(function () {
+     if ($("[rel=tooltip]").length) {
+     $("[rel=tooltip]").tooltip();
+     }
+   });
+</script>
+</head>
+
+
+<% anthology_item = Micropost.find(params[:micropost_id]) %>
+<% comment = anthology_item.comments.all %>
+<% @fans = anthology_item.lovers.all %>
+
+<% provide(:title, anthology_item.title) %>
+
+<div class="wrap">
+  <div class="top">
+        <% if !anthology_item.subject.nil? %>
+            <br>
+            <p>A story about</p>
+            <h1><%= link_to anthology_item.subject.name, anthology_item.subject %></h1>
+        <% end %>
+        <% if !anthology_item.user.nil? %>
+          <p>by <%= link_to anthology_item.user.name, anthology_item.user %></p>
+        <% end %>
+  </div>
+  <div class="story">
+    <div class="storytop">
+      <ol <id="<%= anthology_item.id %>">
+        <div id="storyimage">
+          <% if anthology_item.image_url != nil %>
+              <span class="image"><%= image_tag(anthology_item.image_url(:mega).to_s, options = {:id => "storyimage"}) %></span>
+          <% end %>
+        </div>
+        <br>
+
+        <div id="storycontent">
+          <h4><%= anthology_item.title %></h4>
+          <h5><span class="dateofevent"><%= anthology_item.dateofevent %></span></h5>
+          <span class="content"><%= simple_format(anthology_item.content) %></span>
+          <br>
+        </div>
+      </ol>
+      <div class="showmethelove">
+        <div id="lovers2">
+          <%= render 'love_form' %>
+        </div>
+        <% if anthology_item.lovers.count > 0 %>
+          <div id="lovers"> 
+            <a href="#" rel="tooltip" title="<% @fans.each do |user| %> <%= user.name %> <% end %>" data-placement="right"><%#= anthology_item.lovers.count %><%= pluralize anthology_item.lovers.count, "Love" %></a>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+    <%# if !anthology_item.user.nil? %> <!--this is to prevent contributions from users who've deleted their accounts from breaking the system (their posts will also still show, albeit their pics and names will not). --> 
+    <%# end %>
+    <div class="storybottom">    
+      <div class="userimage">
+        <% if !anthology_item.user.image.blank? %>
+          <%= link_to image_tag(anthology_item.user.image_url(:none), options = {:size => "60x60" }), anthology_item.user %>
+        <% else %>
+          <%= link_to image_tag("hitchcock.png", :size => "60x60"), anthology_item.user %>
+        <% end %>
+      </div>
+      <div class="postinfo">
+        <p>
+        <span class="timestamp">Contributed by <strong><%= link_to anthology_item.user.name, anthology_item.user %></strong></span>
+        <br>
+        <span class="timestamp">
+          Published <%= time_ago_in_words(anthology_item.created_at) %> ago
+          <br>
+          <% if current_user?(anthology_item.user) %> 
+            <%= link_to "Delete", anthology_item, method: :delete,
+                                             confirm: "You sure?",
+                                             title: anthology_item.content %>
+            <%= link_to "Edit", edit_micropost_path(anthology_item) %>
+          <% elsif current_user.id == anthology_item.subject_id %> 
+            <%= link_to "Delete", anthology_item, method: :delete,
+                                             confirm: "You sure?",
+                                             title: anthology_item.content %>
+            <%= link_to "Edit", edit_micropost_path(anthology_item) %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+
+    <%#give antho subject option to delete and edit - how?!?!?%>
+    <!-- we don't want this hidden on the comments/show page, since we want to redirect to the comment in notification, and people want to see their comment published after they write it. -->
+        <%# if anthology_item.comments.count > 0 %>
+              <!--div class="hideformcomments">
+                <a href="#" id="example-show" class="showLink" onclick="showHide('example');return false;">View <--><%#= pluralize(anthology_item.comments.count, "Comment") %><!--/a-->
+        <%# else %>
+              <!--div class="hideformcomments">
+                <a href="#" id="example-show" class="showLink" onclick="showHide('example');return false;">Comment</a-->
+        <%# end %>
+                <!--div id="example" class="more">
+                  <a href="#" id="example-hide" class="hideLink" onclick="showHide('example');return false;">Hide</a-->
+                <div class="commentsection">
+                  <ol>
+                    <div class="answer">
+
+                         <div class="commenthead">
+                            <% anthology_item.comments.each do |comment| %>
+                              <div class="userimage">
+                                <% if !comment.user.image.blank? %>
+                                    <%= link_to image_tag(comment.user.image_url(:none), options = {:size => "40x40" }), comment.user %>
+                                <% else %>
+                                    <%= link_to image_tag("hitchcock.png", :size => "40x40"), comment.user %>
+                                <% end %>
+                              </div>    
+                              <div class="postinfo">
+                                <%= link_to comment.user.name, comment.user %>
+                                <br>
+                                Published <%= time_ago_in_words(comment.created_at) %> ago
+                              </div>
+                              <br>
+                              <div class="commentbody"><%= comment.body %>
+                              </div>  
+                              <% if current_user?(comment.user) %>
+                                  <%#= link_to "delete", comment, method: :delete, 
+                                                         confirm: "You sure?",
+                                                         title: comment.body %>
+                              <% end %> 
+                              <br>   
+                            <% end %>
+
+
+                            <% if !current_user.image.blank? %>
+                                <%= link_to image_tag(current_user.image_url(:none), options = {:size => "40x40" }), current_user %>
+                            <% else %>
+                                <%= link_to image_tag("hitchcock.png", :size => "40x40"), current_user %>
+                            <% end %>
+                            <div class="user">
+                              <%= link_to current_user.name, current_user %>
+                              <br><br>
+                              <%= form_for [anthology_item, current_user.comments.new] do |f| %>
+                                <%= f.text_field :body, placeholder: "Write a comment..."  %>
+                                <br><br>
+                                <%= f.hidden_field :micropost_id, :value => @micropost.id %>
+                                <%= f.submit "Publish", class: "button3"  %>
+                                <br><br>
+                              <% end %>
+                            </div>
+                         </div>  
+                    </div>
+              </div>
+
+          </div>  
+      </ol>
+              <%#= link_to "Back", :back, class: "button2a" %>
+    </div> 
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<%# anthology_item = Micropost.find(params[:id]) %>
+
+<%= form_for(current_user.loves.build(loved_id: @micropost.id), :remote => true) do |f| %>
+
+<%= f.hidden_field :lover_id, :value => current_user.id %>
+  		<%= f.hidden_field :loved_id, :value => @micropost.id %>
+
+<%= image_submit_tag('heartbutton2.png') %>
+  <%#= link_to_submit 'Love' %>
+<% end %>
+
+
+

@@ -1,0 +1,13 @@
+<p><%= @user.name %>,</p>
+
+<p><%= @author.name %> just commented on one of your stories!</p>
+
+<p>Read the comment by <%= link_to "clicking here", micropost_url(@anthology_item) %>.</p>
+
+<p>Antho is dedicated to helping people capture the life stories of friends and family.</p>
+
+
+<p>Regards,</p>
+<p>Team Antho</p>
+
+<p><%= image_tag attachments["Anthologowhite.jpg"].url, :size => "100x100" %></p>

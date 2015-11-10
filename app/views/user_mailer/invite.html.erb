@@ -1,0 +1,42 @@
+<p>"<%= @user.message %>"</p>
+<p> - <%= @user.admin.name %> </p>
+<br>
+<p>--------------------</p>
+<br>
+<p><%= @user.name %>,</p>
+
+<p><%= @user.admin.name %> just started your life story on Antho. Come check out the story that was written about you. <%= link_to "Click here", edit_invite_url(@user.invite_token) %> to set up your account. </p>
+
+<p>Antho is a new website that helps you:</p>
+
+<br>
+<p><%= image_tag attachments["medal.jpg"].url, :size => "28x63" %></p>
+<p><strong>Honor the People In Your Life</strong></p>
+<p>Pay lasting tribute to the individuals who impacted you, by contributing anecdotes to their life stories.</p> 					
+<br>
+<p><%= image_tag attachments["puzzpiece.jpg"].url, :size => "61x60" %></p>
+<p><strong>Remember It Together</strong></p>
+<p>Collaborate with friends and family to record the past and the present, and in the process inspire the future.</p>
+<br>
+<p><%= image_tag attachments["oblivion.jpg"].url, :size => "44x59" %></p>
+<p><strong>Save Your Memories from Oblivion</strong></p>
+<p>Write down and share your priceless stories today, before they’re forgotten.</p>
+<br>
+<p><%= image_tag attachments["bridge.jpg"].url, :size => "61x47" %></p>
+<p><strong>Build Bridges between Generations</strong></p>
+<p>Help your children or future children appreciate who went before them, in a medium that they understand.</p>
+<br>
+<p><%= image_tag attachments["computer.jpg"].url, :size => "54x46" %></p>
+<p><strong>Give the Past an Online Presence</strong></p>
+<p>Build the legacies of those who’ve passed away in a shareable, digestible way.</p> 
+<br>
+<p><%= image_tag attachments["keys.jpg"].url, :size => "66x61" %></p>
+<p><strong>Safeguard your Privacy</strong></p>
+<p>Unlike other social media sites, we will always put our customers’ privacy first.</p> 
+<br>
+<p>Come join the movement!</p>
+<p>Team Antho</p>
+
+<p><%= image_tag attachments["Anthologowhite.jpg"].url, :size => "100x100" %></p>
+
+

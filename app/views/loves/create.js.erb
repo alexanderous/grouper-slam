@@ -1,0 +1,2 @@
+$("#love_form").html("<%= escape_javascript(render('microposts/unlove')) %>")
+$("#lovers").html('<%= "#{@micropost.lovers.count} Loves" %>')

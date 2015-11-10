@@ -1,0 +1,53 @@
+<footer>
+
+  <% if signed_in? %>
+    <br><br><br>
+    <div class="bottom">
+        <%= image_tag("Anthologowhite.png", :size => "100x100", :id => "anthologo2") %>
+    </div>
+    <div class="push"></div> <!--this is to push some of the bottom elements up, above the sticky footer! -->
+    <div class="footer">
+        <ul id="nav">
+          <li>          <%= form_tag users_path, :method => 'get' do %>
+              <div class="searchfooter"><%= text_field_tag :search, params[:search], placeholder: "Search...                   "  %></div>     
+              <%#= submit_tag "S", class: "button", :name => nil %>
+            <% end %><%#= link_to "Anthologies", anthologies_path %></li>
+            <li><%= link_to "Home", root_path %>
+                <ul>
+                      <li><%= link_to "About",   about_path %></li>
+                      <li><%= link_to "Start an Anthology", start_path %></li>
+                      <li><%= link_to "Contribute a Story", contribute_path %></li>
+                      <!--li><%#= link_to "Museum", root_path %></li--> 
+                </ul>
+            </li>
+            <li><%= link_to "Account", edit_user_path(current_user) %>
+                <ul>
+                      <li><%= link_to "Managed Anthologies", anthologies_managed_user_path(current_user) %></li>
+                      <!--li><%#= link_to "Settings", edit_user_path(current_user) %></li-->
+                      <% if current_user.dead? %>
+              
+                        <li><%= link_to "Your Kin", kinships_user_path(current_user.admin) %></li>
+                      <% else %>
+                        <li><%= link_to "Your Kin", kinships_user_path(current_user) %></li>
+                      <% end %>
+                      <li><%= link_to "Stories & Drafts", stories_and_drafts_path %></li>
+                      <li><%= link_to "Your Antho", self_path %></li>
+                </ul> 
+            </li>
+          <li><%= link_to "Help",    help_path %></li>
+          <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+        </ul>
+    </div>
+  <% else %>
+    <div class="push"></div> <!--this is to push some of the bottom elements up, above the sticky footer! -->
+    <div class="footer">
+      <ul> 
+          <li><%= link_to "Home",   root_path %></li>
+          <li><%= link_to "About",    about_path %></li>
+          <li><%= link_to "Help",    help_path %></li>
+          <li><%= link_to "Jobs", jobs_path %></li>
+          <li><%= link_to "Sign In", signin_path %></li>
+      </ul>
+    </div>  
+  <% end %>
+</footer>

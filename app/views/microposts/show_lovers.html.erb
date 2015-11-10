@@ -1,0 +1,55 @@
+<!--THIS PAGE IS NOT BEING USED, A TOOLTIP IS BEING USED INSTEAD -->
+
+<head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34718344-1']);
+  _gaq.push(['_setDomainName', 'antho.co']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+ <%   @micropost = Micropost.find(params[:id]) %>
+ <%   @fans = @micropost.lovers.all %>
+
+
+          <h2><strong>Users Who Loved This</strong></h2>
+<div class="relationships">
+        <ul class="users">
+            <%= render @fans %>
+            <%# the reason why the current_user rendering belowing exists is that _user partial is already too complicated, so I didn't want to add yet another qualification. The _user partial doesn't let you see yourself, unless you're someone else's kin....actually now... %>
+            <% if current_user.loving?(@micropost) %> 
+		         <li>
+					<div class="userimage"> 
+					  <% if current_user.image.blank? %>
+					  	<%= link_to image_tag("hitchcock.png", :size => "60x60"), current_user %>
+					  <% else %>
+					    <%= link_to image_tag(user.image_url(:none), options = {:size => "60x60" }), current_user %>
+					  <% end %>
+					</div>
+				
+					<div class="postinfo"> 
+						<div class="needfont2">
+						  <strong><%= link_to current_user.name, current_user %></strong>
+						  <br>
+						  <% @anthology_items = Micropost.where(:subject_id => current_user.id) %>
+						  <%= link_to pluralize(@anthology_items.count, "story"), current_user %>				
+						  <ul>
+							 	<p>This is You</p>
+						  </ul>	 
+			 			</div>
+					</div>
+				</li>
+			<% end %>
+        </ul>    
+</div>
+    </div>
+</div>

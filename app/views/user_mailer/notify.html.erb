@@ -1,0 +1,15 @@
+<p><%= @user.name %>,</p>
+
+<p> <%= @author.name %> just contributed to your life story on Antho!</p>
+
+<p>Read your kin's story of you by <%= link_to "clicking here", micropost_url(@anthology_item) %>.</p>
+
+<p>If you haven't set up your account yet, this link will not work. You can set up your account through the link from the first e-mail we sent you.</p>
+
+<p>Antho is dedicated to helping people capture the life stories of friends and family. Contribute your stories today!</p>
+
+
+<p>Regards,</p>
+<p>Team Antho</p>
+
+<p><%= image_tag attachments["Anthologowhite.jpg"].url, :size => "100x100" %></p>

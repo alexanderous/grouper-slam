@@ -1,0 +1,8 @@
+<%# anthology_item = Micropost.find(params[:id]) %>
+
+	<%= form_for(current_user.loves.find_by_loved_id(@micropost),
+             html: { method: :delete }, :remote => true) do |f| %>
+	<%= image_submit_tag('heartbutton.png') %>
+
+  <%#= link_to_submit 'Unlove' %>
+<% end %>

@@ -1,0 +1,14 @@
+development:
+  access_key_id: AKIAIKNSA6IYZ72PXGOQ
+  secret_access_key: 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
+  bucket: antho-proto
+
+test:
+  access_key_id: AKIAIKNSA6IYZ72PXGOQ
+  secret_access_key: 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
+  bucket: antho-proto
+
+production:
+  access_key_id: AKIAIKNSA6IYZ72PXGOQ
+  secret_access_key: 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
+  bucket: antho-proto

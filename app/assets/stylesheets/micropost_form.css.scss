@@ -1,0 +1,78 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Hide&Show */
+
+.more {
+	display: none; 
+}
+a.showLink, a.hideLink {
+	text-decoration: none;
+	color: #177382;
+	padding-left: 8px;
+	background: transparent; 
+}
+a.hideLink {
+	background: transparent; 
+}
+a.showLink:hover, a.hideLink:hover {
+	border-bottom: 1px dotted #177382; 
+}
+
+/* Micropost_form */
+
+.micropostform {
+	max-width: 960px;
+	font-size: 16px;
+	margin: 0 auto;
+}
+#hideform {
+	overflow-x: hidden;
+	padding-bottom: 20px;
+	a {
+	font-family: Century Gothic, sans-serif;
+	font-size: 16px;
+	}
+}
+#addstory {
+	width: 50%;
+	height: 235px;
+	float: left;
+	text-align: center;
+	h4 {
+	text-align: center;
+	padding-top: 0px;
+	}
+	.field {
+	width: 450px;
+	}
+}
+#addpicture {
+	width: 50%;
+	height: 235px;
+	float: left;
+	h4 {
+	text-align: center;
+	padding-top: 0px;
+	}
+	h5 {
+	text-align: left;
+	padding-bottom: 1px;
+	font-size: 14px;
+	font-weight: normal;
+	}
+	.field {
+	text-align: left;
+	}
+	select {
+	height: 27px;
+	}
+}
+#micropost_content {
+	height: 150px;
+	width: 450px;
+}
+select {
+	width: 40%;
+}

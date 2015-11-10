@@ -1,0 +1,34 @@
+<% provide(:title, @user.name) %>
+
+<div class="wrap">
+  <div class="top">
+    <h1>Anthologies</h1>
+    <% if @user == current_user %>
+      <p>These are the anthologies managed by you.</p> 
+    <% else %>
+      <p>These are the anthologies managed by <%= link_to @user.name, @user %></p>
+    <% end %>
+    <br>
+        <p><% if !@user.image.blank? %>            
+              <%= link_to image_tag(@user.image_url(:none), :size => "120x120", :class => "anthopic"), @user %>
+            <% else %>
+             <%= link_to image_tag("hitchcock.png", :size => "120x120"), @user %>
+            <% end %><br><br>
+        </p>
+  </div> 
+  <div class="managing">
+    <% if !@legacy_anthologies.blank? %>
+            <h2><strong><%= pluralize(@legacy_anthologies.count, "Anthology") %></strong></h2><br>
+    <% elsif @user == current_user %>
+            <p>You are not managing any anthologies right now.</p> 
+    <% else %>
+            <p>This person is not managing any anthologies right now.</p>         
+    <% end %>
+  </div>
+  <div class="managelegacies">
+    <ul class="users">    
+      <%= render @legacy_anthologies %>
+    </ul>
+  </div>
+</div>
+<br>

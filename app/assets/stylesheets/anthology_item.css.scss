@@ -1,0 +1,91 @@
+tr { 
+	vertical-align: top;
+}
+.post { 
+	width: 315px;
+	height: 450px; 
+	margin: 5px;
+	background-color: white;
+}
+.postcontainer {
+	width: 315px;
+	height: 365px;
+	overflow-y: hidden;
+}
+.postop {
+	border: 2px solid #d1d2d4;
+	height: 365px;
+	overflow-y: scroll;
+	h5 {
+	font-family: Georgia, serif; 
+	font-size: 14px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	}
+	.content a:hover 
+	{
+	color: black;
+	}
+}
+span.dateofevent {
+	font-family: Century Gothic, sans-serif;
+}
+span.image {
+	width: 100%;
+	height: auto;
+}
+span.content {
+	width: 300px;
+	line-height: 21px;
+}
+.postbottom {
+	border: 2px solid #d1d2d4;
+	height: 75px;
+	padding-top: 8px;
+	padding-left: 10px;
+}
+span.timestamp {
+	font-family: Century Gothic, sans-serif;
+	font-size: 12px;
+}
+.userimage {
+	margin-right: 10px;
+	float: left;
+}
+
+/* Drafts */
+
+.drafts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 0px 10px 10px 10px;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+
+.postdraft { 
+	width: 450px;
+	height: 100px; 
+	margin: 25px auto;
+	background-color:rgba(255,255,255,0.5);
+	font-family: Georgia, serif;
+	h3 {
+	text-align: left;
+	font-size: 20px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	}
+}
+
+span.bottomstampdraft {
+	font-family: Century Gothic, san-serif;
+	font-size: 12px;
+}
+
+/* Management */
+
+.managing {
+	text-align: center;
+}

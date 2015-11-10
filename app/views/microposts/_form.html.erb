@@ -1,0 +1,37 @@
+<%= form_for(@micropost), :html => {:multipart => true} do |f| %> 
+  <%#= render 'error_messages', object: @micropost %>
+  <% if @micropost.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@micropost.errors.count, "error") %> prohibited this micropost from being saved:</h2>
+
+      <ul>
+      <% @micropost.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_field :content %>
+  </div>
+  <div class="field">
+    <%= f.label :dateofevent %><br />
+    <%= f.date_select :dateofevent, :start_year => 1850, :end_year => 2013, :include_blank => true %>
+  </div>
+  <div class ="field">
+    <%= f.file_field :image %>
+  </div>  
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :subject_id %><br />
+    <%= f.number_field @user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

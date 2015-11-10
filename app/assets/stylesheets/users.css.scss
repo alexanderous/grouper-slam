@@ -1,0 +1,192 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* New - sign up */
+
+#signup_form {
+	margin: 0 auto;
+	padding-top: 10px;
+	width: 500px;
+	text-align: left;
+	span {
+	font-family: Century Gothic, sans-serif;
+	font-size: 16px;
+	}
+
+}
+.hideform3 {
+	text-align: left;
+	p {
+	text-align: left;
+	}
+}
+label {
+  	font-family: Century Gothic, sans-serif;
+  	font-size: 14px;
+	font-weight: normal;
+	line-height: 10px;
+	font-weight: bold;
+}
+.field_with_errors {
+	background-color: transparent;
+	color: #555;
+	input {
+		color: #555;
+		border-color: yellow;
+	}
+	> label {
+		color: black;
+	}
+}
+#error_explanation {
+	color: black;
+	border: 2px solid yellow;
+	ul li {
+		list-style: none;
+	}
+}
+input {
+	font-family: Georgia, serif; 
+	font-size: 12px;
+}
+
+
+/* Users index */
+
+.users {
+	margin: 0 auto;
+	padding-top: 10px;
+}
+.users li {
+	border-top: 1px solid white;
+	font-family: Century Gothic, sans-serif;
+}
+.users li:last-child {
+	border-bottom: 1px solid white;
+}
+#antholist {
+	margin: 0 auto;
+	padding-top: 10px;
+	max-width: 500px;
+}
+#livinglegacyantho {
+	margin-left: 10px;
+	text-align: left;
+	margin: 20px;
+}
+form {
+	margin: 0;
+}
+#search {
+	margin: 0 auto;
+	text-align: center;
+}
+.special {
+	clear: both;
+}
+.needfont2 p {
+	text-align: left;
+	font-family: Century Gothic, sans-serif;
+	margin-bottom: 0px;
+}
+
+/* Settings -or- Edit */
+
+.settings {
+	margin: 0 auto;
+	padding-top: 10px;
+	width: 500px;
+	text-align: left;
+	p {
+		font-family: Century Gothic, sans-serif;
+		font-size: 14px;
+	}
+}
+.field_with_errors input:focus {
+	border-color: yellow;
+	-webkit-box-shadow: 0 0 6px yellow;
+	box-shadow: 0 0 6px yellow;
+}
+
+/* Show */
+
+#show p {
+	font-family: Georgia, serif; 
+	line-height: 16px;
+	font-size: 12px;
+	padding: 0px 10px 0px 10px;
+}
+.anthopic {
+	margin: 0 auto;
+	text-align: center;
+	width: auto;
+	height: 120px;
+}
+ol.microposts {
+	display: inline;
+}
+.horizontal {
+	overflow-x: scroll;
+	background-image: url('/assets/grid.png');
+}
+.needfont {
+	font-family: Century Gothic, sans-serif;
+	text-align: center;
+	font-size: 12px;
+}
+.storynumber {
+	padding-left: 8px;
+}
+.showmethelove {
+	padding-left: 500px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+}
+#lovers {
+	min-width: 10px;
+	vertical-align: middle;
+	text-align: right;
+}
+#lovers2 {
+	min-width: 10px;
+	text-align: right;
+}
+
+.addphoto {
+	margin-left: 450px;
+}
+
+.recenter {
+	text-align :center;
+}
+
+/* Other_user_index & friendship index*/
+
+.relationships {
+	width: 500px;
+	margin: 0 auto;
+	min-height: 300px;
+	p {
+	font-family: Century Gothic, sans-serif;
+	}
+}
+
+/* My Anthologies */
+
+.managelegacies {
+	width: 500px;
+	min-height: 200px;
+	margin: 0 auto;
+}
+
+/* Random only works here */
+
+ol {
+  margin: 0;
+  font-family: Georgia, serif;
+}
+textarea {
+	font-family: Georgia, serif;
+}
+

@@ -1,0 +1,54 @@
+<head>
+<script language="javascript" type="text/javascript">
+     $(document).ready(function () {
+     if ($("[rel=tooltip]").length) {
+     $("[rel=tooltip]").tooltip();
+     }
+   });
+
+</script>
+</head>
+
+<% provide(:title, @user.name) %>
+<div class="wrap"> 
+  <div id="showposts">
+    <div class="top">
+        <h1>Contributions by <%= link_to @user.name, @user %></h1>
+          <p>
+          <% if @user.image.blank? %>
+             <%= link_to image_tag("hitchcock.png", :size => "120x120"), @user %> 
+          <% else %>
+             <%= link_to image_tag(@user.image_url(:none), options = {:size => "120x120" }), @user %>
+          <% end %>
+        </p>
+  <br>
+  <br>
+      <!--section-->
+        <%#= render 'shared/stats' %>
+      <!--/section-->
+      <%#= render 'follow_form' if signed_in? %>
+
+    </div>
+    <div class="main">
+      <div class="home">
+        <div class="horizontal">
+            <div class="storynumber">
+              <a href="#" rel="tooltip" title="This is the grand total of contributions this person has made on other people's anthologies." data-placement="right" ><strong><%= pluralize(@user.microposts.count, "Contribution") %></strong></a>
+              <br>
+            </div>
+          <%# if @user.microposts.any %>
+            <ol class="microposts">
+              <%= render @microposts %>
+            </ol>
+          <%# end %>
+        </div>
+      </div> 
+    </div> 
+    <br><br>   
+    <div class="startbutton4">
+        <%= link_to 'Start an Anthology', start_path, class: "button" %> &nbsp; &nbsp; &nbsp;
+        <%= link_to 'Contribute a Story', contribute_path, class: "button3" %>
+    </div> 
+    <br><br>
+  </div>
+</div>

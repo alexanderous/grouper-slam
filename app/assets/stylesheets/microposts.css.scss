@@ -1,0 +1,69 @@
+/* Edit */
+
+.editstoryform {
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+}
+.editstory {
+	margin: 0 auto;
+	width: 50%;
+	.field {
+	width: 450px;
+	}
+	select {
+	font-family: Georgia, serif; 
+	}
+}
+
+/* Show */
+
+div.loverlist ol { /* this doesn't work!!!!! boo!!! */
+	text-align: left;
+	padding-left: 0px;
+	line-height: 18px;	
+}
+
+/* Show_Comments */
+
+.story {
+	width: 600px;
+	margin: 0 auto;
+	background-color: white;
+	border: 2px solid #d1d2d4;
+}
+.storytop h4, h5 {
+	font-family: Georgia, serif;
+	padding-bottom: 10px;
+}
+.storytop p {
+	font-family: Georgia, serif;
+}
+#storycontent {
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 30px;
+	line-height: 1.5em;
+}
+.storybottom {
+	border-top: 2px solid #d1d2d4;
+	border-bottom: 2px solid #d1d2d4;
+	padding-top: 8px;
+	padding-left: 10px;
+	min-height: 65px;
+}
+#storyimage {
+	text-align: center;
+	margin: 0 auto;
+}
+.commentsection {
+	width: 400px;
+	margin: 0 auto;
+	font-family: Georgia, serif; 
+}
+.postinfo {
+	font-family: Century Gothic, sans-serif;
+}
+.love_form {
+	
+}
